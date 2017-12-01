@@ -1,0 +1,56 @@
+{
+  "name": "annaserver",
+  "version": "1.0.0",
+  "description": "Small server for communicating with DECAD avatar",
+  "main": "index.js",
+  "scripts": {
+    "build:dist": "tsc -p .",
+    "mocha": "mocha --compilers ts:ts-node/register ./tests/**/*.ts",
+    "test": "nyc mocha --compilers ts:ts-node/register ./tests/**/*.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acepero13/VSMDecadIntegrationServer.git"
+  },
+  "keywords": [
+    "typescript",
+    "nodejs"
+  ],
+  "author": "Alvaro Cepero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acepero13/VSMDecadIntegrationServer/issues"
+  },
+  "homepage": "https://github.com/acepero13/VSMDecadIntegrationServer#readme",
+  "devDependencies": {
+    "@types/chai": "^4.0.6",
+    "@types/mocha": "^2.2.44",
+    "@types/typescript": "^2.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.2"
+  },
+
+  "nyc": {
+    "include": [
+      "src/**/*.ts"
+    ],
+    "exclude": [
+      "**/node_modules/**",
+      "**/test/**",
+      "**/coverage/**"
+    ],
+    "extension": [
+      ".ts"
+    ],
+    
+    "reporter": [
+      "lcov",
+      "html"
+    ],
+    "all": true,
+    "sourceMap": false
+  }
+}
