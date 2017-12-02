@@ -21,6 +21,7 @@ export class JsonParser {
         this.commandHandler = animationHandler;
 
     }
+
     public  parseMessage(message :string):Command {
         let parsedMessage = this.tryToParseJsonMessage(message);
         return this.commandHandler.handleMessage(parsedMessage);
