@@ -24,7 +24,6 @@ export class ServiceLocator {
         return this.services.get(serviceName);
     }
 
-
     private serviceDoesNotExists(serviceName: string) {
         return !this.services.has(serviceName);
     }
