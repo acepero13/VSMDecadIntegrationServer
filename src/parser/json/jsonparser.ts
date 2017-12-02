@@ -6,6 +6,8 @@ import { AnimationHandler } from './../../commandhandlers/animationhandler';
 import { CameraHandler } from './../../commandhandlers/camerahandler';
 import { Command } from './../../commands/command';
 import { DummyHandler } from './../../commandhandlers/dummyhandler';
+
+
 export class JsonParser {
     private commandHandler: CommandHandler;
     public constructor(){
@@ -19,12 +21,12 @@ export class JsonParser {
 
     }
     public  parseMessage(message :string):Command {
-        let parsedMessage = this.tryToParse(message);
+        let parsedMessage = this.tryToParseJsonMessage(message);
         return this.commandHandler.handleMessage(parsedMessage);
     }
 
 
-    private tryToParse(message: string) {
+    private tryToParseJsonMessage(message: string) {
         this.isEmptyMessage(message);
         return JSON.parse(message);
     }

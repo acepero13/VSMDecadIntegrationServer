@@ -3,7 +3,6 @@ import {CameraCommand} from './../commands/cameracommand';
 import { Command } from "./../commands/command";
 
 export class CameraHandler extends CommandHandler{
-
     protected process(parsedMessage: any): Command {
         return new CameraCommand(parsedMessage);
     }
