@@ -32,7 +32,6 @@
     "ts-node": "^3.3.0",
     "typescript": "^2.6.2"
   },
-
   "nyc": {
     "include": [
       "src/**/*.ts"
@@ -45,12 +44,17 @@
     "extension": [
       ".ts"
     ],
-    
     "reporter": [
       "lcov",
       "html"
     ],
     "all": true,
     "sourceMap": false
+  },
+  "dependencies": {
+    "@types/node": "^8.0.53",
+    "systemjs": "^0.20.19",
+    "systemjs-plugin-babel": "0.0.25",
+    "systemjs-plugin-css": "^0.1.36"
   }
 }

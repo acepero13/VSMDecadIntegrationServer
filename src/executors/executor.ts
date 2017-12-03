@@ -10,16 +10,18 @@ export class Executor{
     
     public execute(message: string): boolean {
         try{
-            let gameInstance = this.getGameInstance();
-            let commandMessage = this.parser.parseMessage(message);
-            commandMessage.execute(gameInstance);
+            this.tryToExecute(message);
         }catch(err){
             return false;
         }
         return true;
     }
 
-
+    private tryToExecute(message: string) {
+        let gameInstance = this.getGameInstance();
+        let commandMessage = this.parser.parseMessage(message);
+        commandMessage.execute(gameInstance);
+    }
 
     private getGameInstance():any {
         return ServiceLocator.getInstance().resolve('gameInstance');
