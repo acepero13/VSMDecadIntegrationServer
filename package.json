@@ -53,6 +53,8 @@
   },
   "dependencies": {
     "@types/node": "^8.0.53",
+    "express": "^4.16.2",
+    "socket.io": "^2.0.4",
     "systemjs": "^0.20.19",
     "systemjs-plugin-babel": "0.0.25",
     "systemjs-plugin-css": "^0.1.36"

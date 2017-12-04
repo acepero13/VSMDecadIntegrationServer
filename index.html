@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <script src="public/Build/UnityLoader.js"></script>
+    <script src="public/node_modules/systemjs/dist/system.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "public/Build/DECAD_alpha6_1-webgl.json");
+
+    </script>
+
+    <script>
+        var main;
+        System.config({
+            packages: {
+                'code/': {
+                    defaultExtension: 'js'
+                }
+            }
+        });
+
+        function clickMe() {
+
+            System.import('code/main.js').then(function (main) {
+                var socket = io.connect('http://localhost:8080');
+                var mainModule = main;
+                var instance = gameInstance;
+                socket.on('new message', function (message) {
+                    console.log(message);
+                    mainModule.Main.process(message, gameInstance);
+                });
+            });
+        }
+
+    </script>
+</head>
+
+<body>
+
+    <!-- Unity window -->
+    <div style="display: flex">
+        <div id="gameContainer" style="width: 600px; height: 600px; margin: auto; float: left; border: 10pt solid white;">
+        </div>
+
+
+    </div>
+    <div class="">
+        <button onclick="clickMe()">Click</button>
+    </div>
+
+</body>
+
+</html>
