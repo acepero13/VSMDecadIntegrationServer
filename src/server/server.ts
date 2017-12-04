@@ -45,7 +45,6 @@ export class Server{
             console.log(messageToSend);
             webserver.sendMessageToClient(messageToSend);
             
-            //sender.send(message, remote.address);
         });
     }
     
