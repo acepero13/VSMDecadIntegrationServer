@@ -11,8 +11,8 @@ export class UDPSend {
         let messageToSend = new Buffer(message);
         client.send(messageToSend, 0, message.length, this.port, address, function(err: any, bytes: any) 
         {
-            console.log('UDP message sent to ' + this.port +':'+ address); // Ausgabe der Nachricht
-            client.close(); // Bei erfolgreichen Senden, die Verbindung zum CLient schließen
+            console.log('UDP message sent to ' + this.port +':'+ address);
+            client.close(); 
         });
     }
 }

@@ -1,7 +1,6 @@
 /// <reference path="./../../node_modules/@types/node/index.d.ts" />
 var dgram = require('dgram');
 import { UDPSend } from "./udpsend";
-import {WebServer} from './webserver';
 import {ExpressServer} from './expressserver';
 import { JsonParser } from "./../parser/json/jsonparser";
 import { Executor } from "./../executors/executor";
