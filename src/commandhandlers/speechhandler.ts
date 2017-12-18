@@ -10,5 +10,4 @@ export class SpeechHandler extends CommandHandler{
     protected canProcess(parsedMessage: any): boolean {
         return parsedMessage.type === 'speech';
     }
-    
 }

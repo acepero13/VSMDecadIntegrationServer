@@ -1,47 +1,51 @@
-var express = require('express');
-var app = express();
 var path = require('path');
-var server = require('http').createServer(app);  
+var express = require('express');
 
 
-export class ExpressServer{
+export class ExpressServer {
+    
+    express: any;
+    private app: any;
+    private port: number;
 
-    private io: any; 
-    private client :any; //At the moment only one client is supported
-    connect(): any {
-        console.log(__dirname);
-        this.loadPage();
+    public constructor(port?: number){
+        this.initilizePort(port);
+        this.app = express();
         this.loadAssets();
-        server.listen(8080);
-        this.registerConnectionEvent();
     }
-    public constructor(){
-        this.io = require('socket.io')(server);
-        this.connect();
+    
+
+    private initilizePort(port: number) {
+        if (!port) {
+            port = 8080;
+        }
+        this.port = port;
     }
 
-    private registerConnectionEvent() {
-        let that = this;
-        this.io.on('connection', function (client: any) {
-            console.log('Client connected');
-            that.client = client;
-            client.emit('ready', 'Hello from server');
-        });
+    public setExpress(expressDependency: any){
+        this.app = expressDependency;
     }
 
-    public sendMessageToClient(message: string){
-        console.log('Emitting...');
-        this.client.emit('new message', message);
-    }
-
-    private loadAssets() {
-        app.use("/public", express.static(__dirname + '/../../../'));
-        app.use("/code",   express.static(__dirname + '/../../../out/src/'));
-    }
-
-    private loadPage() {
-        app.get('/', function (req: any, res: any) {
+    
+    start(): any {   
+        this.app.listen(this.port);
+        this.app.get('/', function (req: any, res: any) {
+            console.log('AAAAAAAA');
             res.sendFile(path.join(__dirname + '/../../../index.html'));
         });
     }
+
+    public getPort() {
+        return this.port;
+    }
+
+    loadAssets(): any {
+        this.app.use("/public", express.static(__dirname + '/../../../'));
+        this.app.use("/code",   express.static(__dirname + '/../../../out/src/'));
+    }
+
+
+
+
+
 }
