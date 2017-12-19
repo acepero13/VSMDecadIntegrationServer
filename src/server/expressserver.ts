@@ -1,22 +1,26 @@
 var path = require('path');
 var express = require('express');
-import {Home} from './middleware/home';
-import {Assets} from './middleware/assets';
-import {MiddlewareInitializator} from './utils/middlewareservice';
-
+import { Home } from './middleware/home';
+import { Assets } from './middleware/assets';
+import { MiddlewareInitializator } from './utils/middlewareservice';
+import {Emitter} from './utils/emitter';
 export class ExpressServer {
-    
+    server: any;
+    emitter: any;
+
     express: any;
     private app: any;
     private port: number;
     private middlewareInitializer: MiddlewareInitializator;
 
-    public constructor(port?: number){
+    public constructor(port?: number) {
         this.initilizePort(port);
         this.app = express();
+        this.server  = require('http').Server(this.app);
+        this.initializeEmitter();
         
     }
-    
+
 
     private initilizePort(port: number) {
         if (!port) {
@@ -25,16 +29,25 @@ export class ExpressServer {
         this.port = port;
     }
 
-    public setExpress(expressDependency: any){
-        this.app = expressDependency;
+
+    public setServer(server: any, app: any) {
+        this.server = server;
+        this.app = app;
     }
 
-    
-    start(): any {   
-        this.app.listen(this.port);
+    public setEmitter(emitter: Emitter){
+        this.emitter = emitter;
+    }
+
+    start(): any {
+        this.server.listen(this.port);
         this.initializeMiddlewares();
         
-    
+    }
+
+    private initializeEmitter() {
+        this.emitter = new Emitter(this.server);
+        this.emitter.registerConnectionEvent();
     }
 
     private initializeMiddlewares() {

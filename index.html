@@ -19,10 +19,10 @@
         function init() {
             console.log('Clicked!');
             System.import('code/main.js').then(function (main) {
-                var socket = io.connect('http://localhost:8080');
+                var socket = io.connect('http://localhost:5005');
                 var mainModule = main;
                 var instance = gameInstance;
-                socket.on('new message', function (message) {
+                socket.on('connected', function (message) {
                     console.log(message);
                     mainModule.Main.process(message, gameInstance);
                 });

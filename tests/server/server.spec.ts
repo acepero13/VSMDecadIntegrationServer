@@ -1,4 +1,3 @@
-import * as nock from 'nock';
 import { expect } from 'chai';
 import * as chai from 'chai';
 import 'mocha';
@@ -6,7 +5,7 @@ import 'sinon';
 import * as sinonChai from 'sinon-chai';
 import { ExpressServer } from './../../src/server/expressserver';
 import * as sinon from 'sinon';
-const request = require('supertest');
+import {FakeEmitter} from '../fakes/fakeEmitter';
 
 const fakeHttpServer = {};
 let server: any;
@@ -61,6 +60,7 @@ describe('Mocked server', () => {
 
 function startServer(port?: any) {
     server = new ExpressServer(port);
-    server.setExpress(fakeExpress);
+    server.setServer(fakeExpress, fakeExpress);
+    server.setEmitter(new FakeEmitter(fakeExpress));
     let returnedServer = server.start();
 }
