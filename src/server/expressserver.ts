@@ -1,17 +1,20 @@
 var path = require('path');
 var express = require('express');
-
+import {Home} from './middleware/home';
+import {Assets} from './middleware/assets';
+import {MiddlewareInitializator} from './utils/middlewareservice';
 
 export class ExpressServer {
     
     express: any;
     private app: any;
     private port: number;
+    private middlewareInitializer: MiddlewareInitializator;
 
     public constructor(port?: number){
         this.initilizePort(port);
         this.app = express();
-        this.loadAssets();
+        
     }
     
 
@@ -29,23 +32,18 @@ export class ExpressServer {
     
     start(): any {   
         this.app.listen(this.port);
-        this.app.get('/', function (req: any, res: any) {
-            console.log('AAAAAAAA');
-            res.sendFile(path.join(__dirname + '/../../../index.html'));
-        });
+        this.initializeMiddlewares();
+        
+    
+    }
+
+    private initializeMiddlewares() {
+        this.middlewareInitializer = new MiddlewareInitializator(this.app);
+        this.middlewareInitializer.initialize();
     }
 
     public getPort() {
         return this.port;
     }
-
-    loadAssets(): any {
-        this.app.use("/public", express.static(__dirname + '/../../../'));
-        this.app.use("/code",   express.static(__dirname + '/../../../out/src/'));
-    }
-
-
-
-
 
 }
