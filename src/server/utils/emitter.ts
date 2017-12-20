@@ -1,12 +1,14 @@
 export class Emitter{          
     io: any;
     client: any;
+    clients: Array<any>;
 
     private server: any;
   
     
     constructor(server: any){
         this.server = server;
+        this.clients = new Array();
         this.initIO();
         
     }
@@ -16,11 +18,15 @@ export class Emitter{
     }
     setClient(client: any): void {
         this.client = client;
+        this.clients.push(client);
     }
 
     
     emit(message: string): void {
-        this.client.emit('new request', message);
+        console.log('Emitting...'+ message);
+        this.clients.forEach(function(client: any, index: number){
+            client.emit('new request', message);
+        })
     }
 
     setIO(io: any): any {
@@ -28,13 +34,12 @@ export class Emitter{
     }
 
     public registerConnectionEvent() {
-        this.io.on('connection', this.notifyConnection);
+        this.io.on('connection', this.notifyConnection.bind(this));
     }
 
     private notifyConnection(client: any){
         this.client = client;
-        console.log('Hola mundo')
-        client.emit('ready', 'Hello from server');
+        this.clients.push(client);
     }
 
 

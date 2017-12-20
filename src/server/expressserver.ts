@@ -51,7 +51,7 @@ export class ExpressServer {
     }
 
     private initializeMiddlewares() {
-        this.middlewareInitializer = new MiddlewareInitializator(this.app);
+        this.middlewareInitializer = new MiddlewareInitializator(this.app, this.emitter);
         this.middlewareInitializer.initialize();
     }
 

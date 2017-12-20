@@ -1,4 +1,6 @@
+import { Emitter } from "./../../../src/server/utils/emitter";
+
 export interface Middleware{
-    
-    register(app: any): void;
+    emitter: Emitter;
+    register(app: any, emitter: Emitter): void;
 }

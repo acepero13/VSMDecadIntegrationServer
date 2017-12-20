@@ -5,6 +5,7 @@ export class Main{
 
 
     public static process(message: string, gameInstance: any){
+        console.log('Processing:' + message);
         ServiceLocator.getInstance().register('gameInstance', gameInstance);
         let parser = new JsonParser();
         let executor = new Executor(parser);

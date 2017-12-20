@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+  <head>
+
+    <!-- UNITY scripts -->
+    <!-- See: https://docs.unity3d.com/Manual/webgl-templates.html -->
+
+    <!-- script src="vendor/unity/UnityProgress.js"></script -->
+    <script src="Build/UnityLoader.js"></script>
+    <script>
+        var gameInstance = UnityLoader.instantiate("gameContainer", "Build/DECAD_alpha6_3-webgl.json"); <!-- , {onProgress: UnityProgress} -->
+    </script>
+    <!-- END UNITY scripts -->
+
+    <!-- GUI scripts -->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        // jQuery Document
+
+        function speak (msg) {
+            console.log("-------------------chatText: " + msg)
+            gameInstance.SendMessage('AnnaMesh', 'GetInput', msg);
+        }
+
+        // The following code prevents the "speak" form to reload a page with a GET request.
+        $(document).ready(function(){
+            // If user submits the form
+            $("#submitmsg").click(function(){
+                // Interaction with Unity
+                var clientmsg = $("#usermsg").val();
+                speak(clientmsg);
+
+                // FIXME auto scrolling does not work
+                var oldscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height before the request
+
+                $("#usermsg").attr("value", "");
+                var now = new Date();
+                var formatted = now.getHours() + ":" + now.getMinutes();
+                var element = "<div class='msgln'>(" + formatted + ") <b>YOU</b>: " + clientmsg + "<br></div>";
+                $("#chatbox").append(element);
+
+                // Auto-scroll
+                var newscrollHeight = $("#chatbox").attr("scrollHeight") - 20; //Scroll height after the request
+                if (newscrollHeight > oldscrollHeight) {
+                    $("#chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                }
+
+                return false;
+            });
+        });
+
+    </script>
+    <!-- END GUI SCRIPTS -->
+
+  </head>
+
+  <body>
+
+<!-- Unity window -->
+<div style="display: flex">
+  <div id="gameContainer" style="width: 600px; height: 600px; margin: auto; float: left; border: 10pt solid white;">
+  </div> <!-- style="width: 600px; height: 600px" -->
+  <!-- div class="footer">
+      <div class="webgl-logo"></div>
+      <div class="fullscreen" onclick="gameInstance.SetFullscreen(1)"></div>
+      <div class="title"></div>
+  </div -->
+  <script src="setup_public_api.js"></script>
+
+  <div style="float: left; border: 10pt solid white;">
+    <p>Type your text here and the agent will speak it out.</p>
+
+    <!-- Chat box -->
+    <form name="message" action="">
+        <input name="usermsg" type="text" id="usermsg" />
+        <input name="submitmsg" type="submit" id="submitmsg" value="Speak" />
+    </form>
+
+    <div style="visible"> <!-- Set visibility to "hidden" for production or "visible" for debug -->
+      <p>Set of raw interactive tests for th Public API. Click on the Test sentences to invoke the Public API functions.</p>
+
+      <h3>Test - Animation</h3>
+      <div>Test <span onclick="PlayAnimationClip('Waving')">Play Waving</span> or <span onclick="PlayAnimationClip('Salsa1')">Play Salsa1</span></div>
+      <div><span onclick='document.getElementById("animation_status").innerHTML=IsAnimationClipPlaying()'>Test IsAnimationClipPlaying:</span><span id="animation_status"></span></div>
+      <div><span onclick='document.getElementById("animation_current").innerHTML=GetPlayingAnimationClip()'>Test GetPlayingAnimationClip:</span><span id="animation_current"></span></div>
+      <div><span onclick='document.getElementById("animation_list").innerHTML=ListAvailableAnimationClips()'>Test ListAvailableAnimationClips:</span><span id="animation_list"></span></div>
+      <div onclick='EnableAmbientAnimation()'>Test EnableAmbientAnimation</div>
+      <div onclick='DisableAmbientAnimation()'>Test DisableAmbientAnimation</div>
+
+      <h3>Test - Mary TTS</h3>
+      <div onclick="MaryTTSspeak('Test native A-P-I.')">Test MaryTTSspeak</div>
+      <div><span onclick='document.getElementById("mary_status").innerHTML=IsMaryTTSspeaking()'>Test IsMaryTTSspeaking:</span><span id="mary_status"></span></div>
+    </div>
+
+  </div>
+</div>
+
+
+</body>
+
+</html>

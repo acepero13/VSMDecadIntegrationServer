@@ -51,6 +51,11 @@ describe('Mocked server', () => {
         spyExpressGet.should.have.been.calledWith('/');
     });
 
+    it('should load index page', () => {
+        startServer();
+        spyExpressGet.should.have.been.calledWith('/speak/:text');
+    });
+
     it('should load assets', () => {
         startServer();
         spyExpressUse.should.have.been.calledWith('/public');

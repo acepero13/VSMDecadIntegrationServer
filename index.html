@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <script src="public/Build/UnityLoader.js"></script>
+    <script src="public/DECAD/Build/UnityLoader.js"></script>
     <script src="public/node_modules/systemjs/dist/system.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "public/Build/DECAD_alpha6_1-webgl.json");
+        var gameInstance = UnityLoader.instantiate("gameContainer", "public/DECAD/Build/DECAD_alpha6_3-webgl.json");
         document.addEventListener('DOMContentLoaded', function () {
             loadLibraries();
             init();
@@ -22,7 +22,7 @@
                 var socket = io.connect('http://localhost:5005');
                 var mainModule = main;
                 var instance = gameInstance;
-                socket.on('connected', function (message) {
+                socket.on('new request', function (message) {
                     console.log(message);
                     mainModule.Main.process(message, gameInstance);
                 });
