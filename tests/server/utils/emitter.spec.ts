@@ -6,6 +6,7 @@ import * as sinonChai from 'sinon-chai';
 
 import { Emitter } from './../../../src/server/utils/emitter';
 import { FakeEmitter } from './../../fakes/fakeEmitter';
+import {App} from '../../../src/constants';
 
 
 chai.should();
@@ -34,7 +35,7 @@ describe('Test emitter', () => {
         let emitter = new FakeEmitter(fakeServer);
         emitter.setClient(fakeClient);
         emitter.emit(message);
-        spyClient.should.have.been.calledWith('new request', message);
+        spyClient.should.have.been.calledWith(App.IO_REQUEST_NOTIFICATION, message);
     });
 
 
@@ -47,7 +48,7 @@ describe('Test emitter', () => {
         emitter.setIO(fakeIO);
         emitter.registerConnectionEvent();
         emitter.emit(message);
-        spyOn.should.have.been.calledWith('connection');
+        spyOn.should.have.been.calledWith(App.IO_CONNECTED_NOTIFICATION);
                 
     });
 });

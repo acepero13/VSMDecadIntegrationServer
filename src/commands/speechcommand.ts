@@ -1,4 +1,5 @@
 import { Command } from './command';
+import {App} from '../constants';
 export class SpeechCommand implements Command {
     
     parsedMessage: any;
@@ -8,6 +9,6 @@ export class SpeechCommand implements Command {
 
     execute(gameInstance: any): void {
         let msg = this.parsedMessage.speech;
-        gameInstance.SendMessage('AnnaMesh', 'MaryTTSspeak', msg);
+        gameInstance.SendMessage(App.AVATAR, App.COMMAND_SPEAK, msg);
     }
 }

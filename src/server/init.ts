@@ -1,3 +1,4 @@
 import {ExpressServer} from './expressserver';
-let server = new ExpressServer(5005);
+import {App} from './../../src/constants';
+let server = new ExpressServer(App.PORT);
 server.start();

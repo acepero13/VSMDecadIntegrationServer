@@ -1,12 +1,13 @@
 import { CommandHandler } from "./commandhandler";
 import {AnimationCommand} from './../commands/animationcommand';
 import { Command } from "./../commands/command";
+import {App} from '../../src/constants';
 export class AnimationHandler extends CommandHandler{
     protected process(parsedMessage: any): Command {
         return new AnimationCommand(parsedMessage);
     }
     protected canProcess(parsedMessage: any): boolean {
-        return parsedMessage.type === 'animation';
+        return parsedMessage.type === App.TYPE_ANIMATION;
     }
     
 }

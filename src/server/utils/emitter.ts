@@ -1,3 +1,4 @@
+import {App} from '../../constants';
 export class Emitter{          
     io: any;
     client: any;
@@ -25,7 +26,7 @@ export class Emitter{
     emit(message: string): void {
         console.log('Emitting...'+ message);
         this.clients.forEach(function(client: any, index: number){
-            client.emit('new request', message);
+            client.emit(App.IO_REQUEST_NOTIFICATION, message);
         })
     }
 
@@ -34,7 +35,7 @@ export class Emitter{
     }
 
     public registerConnectionEvent() {
-        this.io.on('connection', this.notifyConnection.bind(this));
+        this.io.on(App.IO_CONNECTED_NOTIFICATION, this.notifyConnection.bind(this));
     }
 
     private notifyConnection(client: any){

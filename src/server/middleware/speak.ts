@@ -1,6 +1,6 @@
-import {Middleware} from './middleware';
+import { Middleware } from './middleware';
 import { Emitter } from './../../../src/server/utils/emitter';
-export class Speak implements Middleware{
+export class Speak implements Middleware {
     emitter: Emitter;
     speak(req: any, res: any): any {
         let messageToSend = '{"type": "speech", "speech": "' + req.params.text + '"}';

@@ -4,6 +4,7 @@ import { Home } from './middleware/home';
 import { Assets } from './middleware/assets';
 import { MiddlewareInitializator } from './utils/middlewareservice';
 import {Emitter} from './utils/emitter';
+import { App } from '../../src/constants';
 export class ExpressServer {
     server: any;
     emitter: any;
@@ -24,7 +25,7 @@ export class ExpressServer {
 
     private initilizePort(port: number) {
         if (!port) {
-            port = 8080;
+            port = App.PORT;
         }
         this.port = port;
     }

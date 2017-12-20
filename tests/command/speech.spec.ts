@@ -6,6 +6,7 @@ import { SpeechCommand } from './../../src/commands/speechcommand';
 import { Executor } from '../../src/executors/executor';
 import { ServiceLocator } from '../../src/utils/servicelocator';
 import { FakeGameInstance } from '../fakes/fakegame';
+import {App} from '../../src/constants';
 
 
 describe('Test Speak command', () => {
@@ -25,7 +26,7 @@ describe('Test Speak command', () => {
     it('on execute with service locatorshould return true', () => {
         let fakeGame = new FakeGameInstance();
         let expectedText = 'Hello, my name is Anna';
-        ServiceLocator.getInstance().register('gameInstance', fakeGame);
+        ServiceLocator.getInstance().register(App.GAME_INSTANCE, fakeGame);
         let executor = makeExecutor();
         let res = executor.execute('{"type": "speech", "speech": "' + expectedText+ '"}');
         expect(fakeGame.params).to.be.equals(expectedText);
