@@ -1,7 +1,7 @@
 import { CommandHandler } from "./commandhandler";
 import {CameraCommand} from './../commands/cameracommand';
 import { Command } from "./../commands/command";
-import {App} from '../../src/constants';
+import {App} from '../constants';
 export class CameraHandler extends CommandHandler{
     protected process(parsedMessage: any): Command {
         return new CameraCommand(parsedMessage);

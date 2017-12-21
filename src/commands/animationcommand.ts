@@ -1,10 +1,17 @@
 import { Command } from './command';
+import { ServiceLocator } from './../utils/servicelocator';
 export class AnimationCommand implements Command {
-    execute(gameInstance: any): void {
-        throw new Error("Method not implemented.");
-    }
-    parsedMessage: any;
+    play: any;
+    parsedAnimation: any;
     public constructor(parsedMessage: any) {
-        this.parsedMessage = parsedMessage;
+        this.parsedAnimation = parsedMessage;
+        this.play = ServiceLocator.getInstance().resolve('playAnimation');
     }
+    execute(gameInstance: any): void {
+        console.log(this.parsedAnimation);
+        console.log('Alvaro')
+        let animation = this.parsedAnimation.name;
+        this.play(animation);
+    }
+    
 }

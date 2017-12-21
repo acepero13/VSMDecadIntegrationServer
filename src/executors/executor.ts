@@ -12,6 +12,7 @@ export class Executor{
         try{
             this.tryToExecute(message);
         }catch(err){
+            console.log(err);
             return false;
         }
         return true;

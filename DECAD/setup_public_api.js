@@ -34,6 +34,22 @@ Module.onRuntimeInitialized = function() {
   MaryTTSspeak = Module.cwrap('MaryTTSspeak',null,['string']);
   IsMaryTTSspeaking = Module.cwrap('IsMaryTTSspeaking', 'number', []);
 
+  //
+  // FacialExpressions
+  //
+  SetCurrentFacialExpression = Module.cwrap('SetCurrentFacialExpression', null, ['string'])
+  GetCurrentFacialExpression = Module.cwrap('GetCurrentFacialExpression', 'string', [])
+  ClearFacialExpression = Module.cwrap('ClearFacialExpression', null, [])
+  ListFacialExpressions = Module.cwrap('ListFacialExpressions', 'string', [])
+  SetExpressionTransitionTime = Module.cwrap('SetExpressionTransitionTime', null, ['number'])
+  GetExpressionTransitionTime = Module.cwrap('GetExpressionTransitionTime', 'number', [])
+
+  //
+  // Eye-gaze
+  //
+  LookAtPoint = Module.cwrap('LookAtPoint', null, ['number', 'number','number'])
+  LookAtObject = Module.cwrap('LookAtObject', null, ['string'])
+
   console.log("Setup Public API: functions wrapped.");
 };
 

@@ -6,6 +6,7 @@
 /out
 .nyc_output/
 Build/
+DECAD/
 
 # dependencies
 /node_modules

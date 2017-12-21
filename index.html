@@ -5,51 +5,14 @@
     <script src="public/DECAD/Build/UnityLoader.js"></script>
     <script src="public/node_modules/systemjs/dist/system.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        var gameInstance = UnityLoader.instantiate("gameContainer", "public/DECAD/Build/DECAD_alpha6_3-webgl.json");
-        document.addEventListener('DOMContentLoaded', function () {
-            loadLibraries();
-            init();
-        }, false);
-        
-
-    </script>
-
-    <script>
-        function init() {
-            console.log('Clicked!');
-            System.import('code/main.js').then(function (main) {
-                var socket = io.connect('http://localhost:5005');
-                var mainModule = main;
-                var instance = gameInstance;
-                socket.on('new request', function (message) {
-                    console.log(message);
-                    mainModule.Main.process(message, gameInstance);
-                });
-            });
-        }
-
-        function loadLibraries(){
-            System.config({
-            packages: {
-                'code/': {
-                    defaultExtension: 'js'
-                }
-            }
-        });
-        }
-
-    </script>
+    <script src="public/scripts/loader.js"></script>
 </head>
 
 <body>
 
     <!-- Unity window -->
     <div style="display: flex">
-        <div id="gameContainer" style="width: 600px; height: 600px; margin: auto; float: left; border: 10pt solid white;">
-        </div>
-
-
+        <div id="gameContainer" style="width: 600px; height: 600px; margin: auto; float: left; border: 10pt solid white;"></div>
     </div>
 
 

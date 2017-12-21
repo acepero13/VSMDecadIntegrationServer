@@ -3,6 +3,7 @@ import {Home} from '../middleware/home';
 import {Assets} from '../middleware/assets';
 import {Speak} from '../middleware/speak';
 import { Emitter } from './../../../src/server/utils/emitter';
+import {Animation} from '../middleware/animation';
 export class MiddlewareInitializator {
     emitter: Emitter;
     app: any;
@@ -18,6 +19,7 @@ export class MiddlewareInitializator {
         this.middlewares.push(new Home());
         this.middlewares.push(new Assets());
         this.middlewares.push(new Speak());
+        this.middlewares.push(new Animation());
     }
 
     public initialize(){
