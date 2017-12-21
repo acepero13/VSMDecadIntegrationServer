@@ -43,6 +43,13 @@ export class Emitter{
         this.clients.push(client);
     }
 
+    public waitFor(event: string, callback: any): void{
+        this.io.on(event, function(message: any){
+            console.log(message);
+            callback(message);
+        });
+    }
+
 
 
 }

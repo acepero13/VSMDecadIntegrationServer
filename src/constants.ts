@@ -1,4 +1,6 @@
-export class App{    
+export class App{        
+    static TYPE_LIST_ANIMATION = 'list_animation';
+
     public static TYPE_CAMERA = 'camera';
 
     public static HOST = 'http://localhost:5005';

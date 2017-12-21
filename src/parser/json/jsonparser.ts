@@ -1,30 +1,17 @@
-import {AnimationCommand} from '../../commands/animationcommand';
-import { CameraCommand } from '../../commands/cameracommand';
-import { DummyCommand } from '../../commands/dummycommand';
-import { CommandHandler } from './../../commandhandlers/commandhandler';
-import { AnimationHandler } from './../../commandhandlers/animationhandler';
-import { CameraHandler } from './../../commandhandlers/camerahandler';
+
 import { Command } from './../../commands/command';
-import { DummyHandler } from './../../commandhandlers/dummyhandler';
-import { SpeechHandler } from './../../commandhandlers/speechhandler';
+import { CommandFactory } from '../../factories/commandfactory';
 
 export class JsonParser {
-    private commandHandler: CommandHandler;
-    public constructor(){
-        let animationHandler = new AnimationHandler();
-        let cameraHandler = new CameraHandler(); 
-        let speechHandler = new SpeechHandler();
-        let dummyHandler = new DummyHandler();
-        animationHandler.setNext(cameraHandler);
-        cameraHandler.setNext(speechHandler);
-        speechHandler.setNext(dummyHandler);
-        this.commandHandler = animationHandler;
+    commandFactory: CommandFactory;
+    public constructor() {
+        this.commandFactory = new CommandFactory();
 
     }
 
-    public  parseMessage(message :string):Command {
+    public parseMessage(message: string): Command {
         let parsedMessage = this.tryToParseJsonMessage(message);
-        return this.commandHandler.handleMessage(parsedMessage);
+        return this.commandFactory.create(parsedMessage);
     }
 
 
@@ -34,7 +21,7 @@ export class JsonParser {
     }
 
     private isEmptyMessage(message: string) {
-        if(!message){
+        if (!message) {
             throw new Error('Cannot parse empty message');
         }
     }
