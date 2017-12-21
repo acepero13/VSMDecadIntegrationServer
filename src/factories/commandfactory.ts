@@ -24,6 +24,7 @@ export class CommandFactory {
                 break;
             case App.TYPE_LIST_ANIMATION:
                 command = new ListAnimationCommand(parsedMessage);
+                break;
             default:
                 command = new DummyCommand(parsedMessage);
                 break;

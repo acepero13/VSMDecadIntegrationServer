@@ -8,20 +8,19 @@ export class Executor{
         this.parser = parser;
     }
     
-    public execute(message: string): boolean {
+    public execute(message: string): any {
         try{
-            this.tryToExecute(message);
+            return this.tryToExecute(message);
         }catch(err){
             console.log(err);
             return false;
         }
-        return true;
     }
 
     private tryToExecute(message: string) {
         let gameInstance = this.getGameInstance();
         let commandMessage = this.parser.parseMessage(message);
-        commandMessage.execute(gameInstance);
+        return commandMessage.execute(gameInstance);
     }
 
     private getGameInstance():any {

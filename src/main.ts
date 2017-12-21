@@ -8,12 +8,11 @@ export class Main{
 
 
     public static process(message: string, gameInstance: any){
-       
-        
         ServiceLocator.getInstance().register(App.GAME_INSTANCE, gameInstance);
         let parser = new JsonParser();
         let executor = new Executor(parser);
-        executor.execute(message);
+        let response = executor.execute(message);
+        return response;
     }
 
     private static getModule(gameInstance: any){

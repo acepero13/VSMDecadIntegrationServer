@@ -16,9 +16,9 @@ export class Animation implements Middleware{
     }
 
     listAnimations(req: any, res: any): void{
-        let messageToSend = '{"type": "list", "name": "animations"}';
+        let messageToSend = '{"type": "list_animation", "name": "animations"}';
         this.emitter.emit(messageToSend);
-        this.emitter.waitFor('on List Animations', this.sendResponse.bind(this, res));
+        this.emitter.waitFor('response', this.sendResponse.bind(this, res));
         
     }
 

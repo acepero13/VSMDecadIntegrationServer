@@ -7,9 +7,10 @@ export class AnimationCommand implements Command {
         this.parsedAnimation = parsedMessage;
         this.play = ServiceLocator.getInstance().resolve('playAnimation');
     }
-    execute(gameInstance: any): void {
+    execute(gameInstance: any): any {
         let animation = this.parsedAnimation.name;
         this.play(animation);
+        return true;
     }
     
 }

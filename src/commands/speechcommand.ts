@@ -7,8 +7,9 @@ export class SpeechCommand implements Command {
         this.parsedMessage = parsedMessage;
     }
 
-    execute(gameInstance: any): void {
+    execute(gameInstance: any): any {
         let msg = this.parsedMessage.speech;
         gameInstance.SendMessage(App.AVATAR, App.COMMAND_SPEAK, msg);
+        return true;
     }
 }

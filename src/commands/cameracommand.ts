@@ -1,6 +1,6 @@
 import { Command } from './command';
 export class CameraCommand implements Command {
-    execute(gameInstance: any): void {
+    execute(gameInstance: any): any {
         throw new Error("Method not implemented.");
     }
     parsedMessage: any;

@@ -44,8 +44,7 @@ export class Emitter{
     }
 
     public waitFor(event: string, callback: any): void{
-        this.io.on(event, function(message: any){
-            console.log(message);
+        this.client.on('response', function(message: any){
             callback(message);
         });
     }

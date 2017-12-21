@@ -7,7 +7,10 @@ function registerFunctions(mainInstance) {
     Module.onRuntimeInitialized = function () {
         console.log("Setup Public API: Wrapping functions...");
         let playAnimationClipFunction = Module.cwrap('PlayAnimationClip', null, ['string']);
+        let listAvailableAnimation = Module.cwrap('ListAvailableAnimationClips', 'string', []);
         mainInstance.register('playAnimation', playAnimationClipFunction);
+        mainInstance.register('listAvailableAnimations', listAvailableAnimation);
+        
 
     };
 }
@@ -26,8 +29,8 @@ function init() {
         var instance = gameInstance;
         registerFunctions(mainModule.Main);
         socket.on('new request', function (message) {
-            console.log(message);
-            mainModule.Main.process(message, gameInstance);
+            let result = mainModule.Main.process(message, gameInstance);
+            socket.emit('response', result);
         });
     });
 }

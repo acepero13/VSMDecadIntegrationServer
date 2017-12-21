@@ -1,4 +1,4 @@
 export interface Command {
-    execute(gameInstance: any): void;
+    execute(gameInstance: any): any;
 
 }
