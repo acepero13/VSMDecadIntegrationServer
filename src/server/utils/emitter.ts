@@ -3,6 +3,7 @@ export class Emitter{
     io: any;
     client: any;
     clients: Array<any>;
+    events: Array<string>;
 
     private server: any;
   
@@ -10,6 +11,7 @@ export class Emitter{
     constructor(server: any){
         this.server = server;
         this.clients = new Array();
+        this.events = new Array();
         this.initIO();
         
     }
@@ -25,9 +27,10 @@ export class Emitter{
     
     emit(message: string): void {
         console.log('Emitting...'+ message);
-        this.clients.forEach(function(client: any, index: number){
+        this.client.emit(App.IO_REQUEST_NOTIFICATION, message);
+       /* this.clients.forEach(function(client: any, index: number){
             client.emit(App.IO_REQUEST_NOTIFICATION, message);
-        })
+        })*/
     }
 
     setIO(io: any): any {
@@ -44,9 +47,16 @@ export class Emitter{
     }
 
     public waitFor(event: string, callback: any): void{
-        this.client.on('response', function(message: any){
-            callback(message);
-        });
+        this.events.push(event);
+        this.client.on(event, this.callEvent.bind(this, callback));
+    }
+
+    private callEvent(callback: any, message: string): any{
+        return callback(message);
+    }
+
+    public removeEvent(event: any): void{
+        this.client.removeAllListeners(event);
     }
 
 

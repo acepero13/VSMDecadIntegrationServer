@@ -8,10 +8,8 @@ export class ListAnimationCommand implements Command{
         this.parsedMessage = parsedMessage;
     }
     execute(gameInstance: any): any {
-        
         this.availableAnimations = ServiceLocator.getInstance().resolve('listAvailableAnimations');
         let animations = this.availableAnimations();
-        console.log(animations);
         return animations;
     }
 

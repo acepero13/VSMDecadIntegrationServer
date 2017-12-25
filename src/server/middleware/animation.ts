@@ -19,11 +19,15 @@ export class Animation implements Middleware{
         let messageToSend = '{"type": "list_animation", "name": "animations"}';
         this.emitter.emit(messageToSend);
         this.emitter.waitFor('response', this.sendResponse.bind(this, res));
-        
+        return;
     }
 
     sendResponse(res: any, response: string){
+        console.log(11111);
         res.send(response);
+        this.emitter.removeEvent('response');
+        return;
+        
     }
 
 }
