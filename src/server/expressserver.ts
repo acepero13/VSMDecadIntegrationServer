@@ -5,6 +5,7 @@ import { Assets } from './middleware/assets';
 import { MiddlewareInitializator } from './utils/middlewareservice';
 import {Emitter} from './utils/emitter';
 import { App } from '../../src/constants';
+var bodyParser     =        require("body-parser");
 export class ExpressServer {
     server: any;
     emitter: any;
@@ -17,6 +18,8 @@ export class ExpressServer {
     public constructor(port?: number) {
         this.initilizePort(port);
         this.app = express();
+        this.app.use(bodyParser.urlencoded({ extended: false }));
+        this.app.use(bodyParser.json());
         this.server  = require('http').Server(this.app);
         this.initializeEmitter();
         

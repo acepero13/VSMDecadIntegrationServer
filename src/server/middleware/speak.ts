@@ -10,6 +10,14 @@ export class Speak implements Middleware {
     register(app: any, emitter: Emitter): void {
         this.emitter = emitter;
         app.get('/speak/:text', this.speak.bind(this));
+        app.post('/speak', this.postSpeak.bind(this))
+    }
+
+    postSpeak(req: any, res: any): any {
+        console.log('POST SPEAKING')
+        let messageToSend = '{"type": "speech", "speech": "' + req.body.text + '"}';
+        this.emitter.emit(messageToSend);
+        res.send('Speaking...');
     }
 
 }
