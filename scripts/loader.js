@@ -8,8 +8,10 @@ function registerFunctions(mainInstance) {
         console.log("Setup Public API: Wrapping functions...");
         let playAnimationClipFunction = Module.cwrap('PlayAnimationClip', null, ['string']);
         let listAvailableAnimation = Module.cwrap('ListAvailableAnimationClips', 'string', []);
+        let isMaryTtsSpeaking = Module.cwrap('IsMaryTTSspeaking', 'number', []);
         mainInstance.register('playAnimation', playAnimationClipFunction);
         mainInstance.register('listAvailableAnimations', listAvailableAnimation);
+        mainInstance.register('isMaryTtsSpeaking', isMaryTtsSpeaking);
         
 
     };
