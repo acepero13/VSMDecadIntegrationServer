@@ -1,5 +1,9 @@
 import {Middleware} from './middleware';
 import { Emitter } from '../utils/emitter';
+const newLocal: any = 'onAnimationList';
+
+const onAnimationListEvent: string = 'onAnimationList';
+
 export class Animation implements Middleware{
     emitter: Emitter;
     register(app: any, emitter: Emitter): void {
@@ -16,16 +20,15 @@ export class Animation implements Middleware{
     }
 
     listAnimations(req: any, res: any): void{
-        let messageToSend = '{"type": "list_animation", "name": "animations"}';
+        let messageToSend = '{"type": "list_animation", "name": "animations", "event": "' + onAnimationListEvent + '"}';
         this.emitter.emit(messageToSend);
-        this.emitter.waitFor('response', this.sendResponse.bind(this, res));
+        this.emitter.waitFor(onAnimationListEvent, this.sendResponse.bind(this, res));
         return;
     }
 
     sendResponse(res: any, response: string){
-        console.log(11111);
         res.send(response);
-        this.emitter.removeEvent('response');
+        this.emitter.removeEvent(onAnimationListEvent);
         return;
         
     }

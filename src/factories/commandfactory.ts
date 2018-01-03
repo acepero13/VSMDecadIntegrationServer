@@ -4,6 +4,7 @@ import { CameraCommand } from '../commands/cameracommand';
 import { SpeechCommand } from '../commands/speechcommand';
 import {DummyCommand} from '../commands/dummycommand';
 import {ListAnimationCommand} from '../commands/listanimationcommand';
+import {IsSpeakingCommand} from '../commands/isspeakingcommand';
 import { App } from '../constants';
 export class CommandFactory {
     public constructor() {
@@ -24,6 +25,9 @@ export class CommandFactory {
                 break;
             case App.TYPE_LIST_ANIMATION:
                 command = new ListAnimationCommand(parsedMessage);
+                break;
+            case App.TYPE_IS_SPEAKING:
+                command = new IsSpeakingCommand(parsedMessage);
                 break;
             default:
                 command = new DummyCommand(parsedMessage);

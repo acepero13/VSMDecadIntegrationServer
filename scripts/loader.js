@@ -32,7 +32,10 @@ function init() {
         registerFunctions(mainModule.Main);
         socket.on('new request', function (message) {
             let result = mainModule.Main.process(message, gameInstance);
-            socket.emit('response', result);
+            if(result.shouldFireEvent === true){
+                socket.emit(result.event, result.result);
+            }
+            
         });
     });
 }

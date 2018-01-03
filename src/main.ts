@@ -11,7 +11,9 @@ export class Main{
         ServiceLocator.getInstance().register(App.GAME_INSTANCE, gameInstance);
         let parser = new JsonParser();
         let executor = new Executor(parser);
-        let response = executor.execute(message);
+        let result = executor.execute(message);
+        let response = {result: result, shouldFireEvent: parser.shouldFireEvent(), event: parser.getEvent()};
+        console.log(response);
         return response;
     }
 
@@ -27,8 +29,8 @@ export class Main{
 
     public static register(name: string, func: any){
         console.log('registering...');
-            console.log("Setup Public API: Wrapping functions...");
-            ServiceLocator.getInstance().register(name, func);
+        console.log("Setup Public API: Wrapping functions...");
+        ServiceLocator.getInstance().register(name, func);
           
     }
 }
