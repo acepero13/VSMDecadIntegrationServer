@@ -11,6 +11,7 @@ import {App} from '../../src/constants';
 const fakeHttpServer = {};
 let server: any;
 let spyExpressGet: any;
+let spyExpressPost: any;
 let stubExpressListen: any;
 let fakeExpress: any;
 let stubExpress: any;
@@ -23,12 +24,14 @@ describe('Mocked server', () => {
     beforeEach(function () {
         stubExpressListen = sinon.stub();
         spyExpressGet = sinon.spy();
+        spyExpressPost = sinon.spy();
         spyExpressUse = sinon.spy();
         server = new ExpressServer();
         fakeExpress = {
             get: spyExpressGet,
             listen: stubExpressListen,
-            use: spyExpressUse
+            use: spyExpressUse,
+            post: spyExpressPost
         };
 
         stubExpressListen.returns(fakeHttpServer);
@@ -54,7 +57,7 @@ describe('Mocked server', () => {
 
     it('should load index page', () => {
         startServer();
-        spyExpressGet.should.have.been.calledWith('/speak/:text');
+        spyExpressGet.should.have.been.calledWith('/speech/speak/:text');
     });
 
     it('should load assets', () => {

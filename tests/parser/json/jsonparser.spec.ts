@@ -5,6 +5,7 @@ import { AnimationCommand } from './../../../src/commands/animationcommand';
 import { CameraCommand } from './../../../src/commands/cameracommand';
 import { DummyCommand } from './../../../src/commands/dummycommand';
 import { SpeechCommand } from './../../../src/commands/speechcommand';
+import { ServiceLocator } from '../../../src/utils/servicelocator';
 
 describe('Parser without json data', () => {
     it('on parseMessage  should not be null on parse with valid json', () => {
@@ -15,6 +16,9 @@ describe('Parser without json data', () => {
 
 describe('Parser with valid data', () => {
     it('on parseMessage with type animation should return AnimationCommand instance ', () => {
+        ServiceLocator.getInstance().register('playAnimation', function(){
+            console.log('play animation');
+        });
         let parser = new JsonParser();
         let res = parser.parseMessage('{"type": "animation", "name": "angry"}');
         expect(res).to.be.instanceof(AnimationCommand);
