@@ -40,7 +40,8 @@
     "sinon-chai": "^2.14.0",
     "supertest": "^3.0.0",
     "ts-node": "^3.3.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.6.2",
+    "coveralls": "~2.7.1"
   },
   "nyc": {
     "include": [
