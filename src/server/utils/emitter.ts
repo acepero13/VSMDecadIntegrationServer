@@ -28,9 +28,6 @@ export class Emitter{
     emit(message: string): void {
         console.log('Emitting...'+ message);
         this.client.emit(App.IO_REQUEST_NOTIFICATION, message);
-       /* this.clients.forEach(function(client: any, index: number){
-            client.emit(App.IO_REQUEST_NOTIFICATION, message);
-        })*/
     }
 
     setIO(io: any): any {
