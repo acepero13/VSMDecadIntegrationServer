@@ -14,7 +14,7 @@ This is part of the Affective Computing Group at DFKI, Saarland.
 `npm run build:dist`
 
 ### Run server:
-`node out/src/server/init.js`
+`npm run start-server`
 
 ### Visualize avatar:
 Open in the web browser the following url:

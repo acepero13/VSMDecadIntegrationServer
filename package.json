@@ -6,7 +6,8 @@
   "scripts": {
     "build:dist": "tsc -p .",
     "mocha": "mocha --compilers ts:ts-node/register tests/**/**/**/*.spec.ts",
-    "test": "nyc mocha --compilers ts:ts-node/register tests/**/**/**/*.spec.ts"
+    "test": "nyc mocha --compilers ts:ts-node/register tests/**/**/**/*.spec.ts",
+    "start-server": "node out/src/server/init.js" 
   },
   "repository": {
     "type": "git",
