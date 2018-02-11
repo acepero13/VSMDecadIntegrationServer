@@ -16,7 +16,7 @@ describe('Test Speak command', () => {
         expect(res).to.be.false;
     });
 
-    it('on execute with service locatorshould return true', () => {
+    it('on execute with service locator should return true', () => {
         ServiceLocator.getInstance().register('gameInstance', new FakeGameInstance());
         let executor = makeExecutor();
         let res = executor.execute('{"type": "speech", "speech": "Hello, sample text"}');
