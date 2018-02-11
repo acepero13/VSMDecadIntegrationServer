@@ -1,5 +1,8 @@
 # VSMDecadIntegrationServer
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/12d395482bfa4a75a81db74a552a373a)](https://www.codacy.com/app/acepero13/VSMDecadIntegrationServer?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=acepero13/VSMDecadIntegrationServer&amp;utm_campaign=Badge_Grade)
+
+
 Web server to communicate with DECAD Avatar. http://decad.sb.dfki.de/. This server is intended to communicate with VSM.
 
 This is part of the Affective Computing Group at DFKI, Saarland. 
