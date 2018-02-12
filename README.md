@@ -6,9 +6,12 @@
 [![Build Status](https://travis-ci.org/acepero13/VSMDecadIntegrationServer.svg?branch=master)](https://travis-ci.org/acepero13/VSMDecadIntegrationServer)
 [![Coverage Status](https://coveralls.io/repos/github/acepero13/VSMDecadIntegrationServer/badge.svg?branch=master)](https://coveralls.io/github/acepero13/VSMDecadIntegrationServer?branch=master)
 
-Web server to communicate with DECAD Avatar. http://decad.sb.dfki.de/. This server is intended to communicate with VSM.
+Web server to communicate with DECAD Avatar  http://decad.sb.dfki.de/. This server is intended to communicate with VSM.
 
-This is part of the Affective Computing Group at DFKI, Saarland. 
+This software is part of the Affective Computing Group at DFKI, Saarland University. 
+
+### Install:
+`npm install`
 
 ### Build:
 `npm run build:dist`
