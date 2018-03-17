@@ -11,7 +11,6 @@ export class IsSpeakingCommand implements Command {
     }
 
     execute(gameInstance: any): any {
-        let msg = this.parsedMessage.speech;
         return this.isSpeaking();
     }
 }
