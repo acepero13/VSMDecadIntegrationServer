@@ -3,7 +3,7 @@ export class FakeGameInstance {
     functionName: string;
     public params = '';
 
-    public SendMessage(animationObj: string, functionName: string, params:any){
+    public SendMessage(animationObj: string, functionName: string, params: any) {
         this.params = params;
         this.functionName = functionName;
         this.animationObj = animationObj;

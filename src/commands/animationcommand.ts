@@ -12,5 +12,5 @@ export class AnimationCommand implements Command {
         this.play(animation);
         return true;
     }
-    
+
 }

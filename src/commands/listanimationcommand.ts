@@ -13,6 +13,6 @@ export class ListAnimationCommand implements Command{
         return animations;
     }
 
-    
+
 
 }

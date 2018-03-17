@@ -1,5 +1,5 @@
 export class ServiceLocator {
-    
+
     private static instance: ServiceLocator = null;
     private services: Map<string, any>;
     private constructor() {
@@ -18,7 +18,7 @@ export class ServiceLocator {
     }
 
     public resolve(serviceName: string): any {
-        if(this.serviceDoesNotExists(serviceName)){
+        if (this.serviceDoesNotExists(serviceName)) {
             throw new Error('Could not locate service');
         }
         return this.services.get(serviceName);

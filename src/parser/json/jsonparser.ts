@@ -6,11 +6,11 @@ export class JsonParser {
     event: any;
     private isEventPresent: boolean;
 
-    public shouldFireEvent(): boolean{
+    public shouldFireEvent(): boolean {
         return this.isEventPresent;
     }
 
-    public getEvent():string{
+    public getEvent(): string {
         return this.event;
     }
     commandFactory: CommandFactory;

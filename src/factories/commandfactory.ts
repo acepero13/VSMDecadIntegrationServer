@@ -2,9 +2,9 @@ import { Command } from '../commands/command';
 import { AnimationCommand } from '../commands/animationcommand';
 import { CameraCommand } from '../commands/cameracommand';
 import { SpeechCommand } from '../commands/speechcommand';
-import {DummyCommand} from '../commands/dummycommand';
-import {ListAnimationCommand} from '../commands/listanimationcommand';
-import {IsSpeakingCommand} from '../commands/isspeakingcommand';
+import { DummyCommand } from '../commands/dummycommand';
+import { ListAnimationCommand } from '../commands/listanimationcommand';
+import { IsSpeakingCommand } from '../commands/isspeakingcommand';
 import { App } from '../constants';
 export class CommandFactory {
     public constructor() {

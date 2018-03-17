@@ -1,5 +1,5 @@
-export class App{            
-    
+export class App {
+
     static TYPE_IS_SPEAKING = 'isSpeaking';
 
     static TYPE_LIST_ANIMATION = 'list_animation';

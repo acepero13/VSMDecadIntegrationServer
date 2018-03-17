@@ -1,17 +1,17 @@
 import { ServiceLocator } from "../utils/servicelocator";
 import { JsonParser } from "../parser/json/jsonparser";
 
-export class Executor{
+export class Executor {
     parser: JsonParser;
-        
-    public constructor(parser: JsonParser){
+
+    public constructor(parser: JsonParser) {
         this.parser = parser;
     }
-    
+
     public execute(message: string): any {
-        try{
+        try {
             return this.tryToExecute(message);
-        }catch(err){
+        } catch (err) {
             console.log(err);
             return false;
         }
@@ -23,7 +23,7 @@ export class Executor{
         return commandMessage.execute(gameInstance);
     }
 
-    private getGameInstance():any {
+    private getGameInstance(): any {
         return ServiceLocator.getInstance().resolve('gameInstance');
     }
 }

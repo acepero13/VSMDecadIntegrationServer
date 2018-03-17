@@ -1,4 +1,4 @@
-import {expect} from 'chai';
+import { expect } from 'chai';
 import 'mocha';
 import { JsonParser } from './../../../src/parser/json/jsonparser';
 import { AnimationCommand } from './../../../src/commands/animationcommand';
@@ -9,14 +9,14 @@ import { ServiceLocator } from '../../../src/utils/servicelocator';
 
 describe('Parser without json data', () => {
     it('on parseMessage  should not be null on parse with valid json', () => {
-       let parser = new JsonParser();
-       expect(() => {parser.parseMessage('')}).to.throw('Cannot parse empty message');
+        let parser = new JsonParser();
+        expect(() => { parser.parseMessage('') }).to.throw('Cannot parse empty message');
     });
 });
 
 describe('Parser with valid data', () => {
     it('on parseMessage with type animation should return AnimationCommand instance ', () => {
-        ServiceLocator.getInstance().register('playAnimation', function(){
+        ServiceLocator.getInstance().register('playAnimation', function () {
             console.log('play animation');
         });
         let parser = new JsonParser();

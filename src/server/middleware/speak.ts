@@ -22,19 +22,19 @@ export class Speak implements Middleware {
         res.send('Speaking...');
     }
 
-    isSpeaking(req: any, res: any): any{
+    isSpeaking(req: any, res: any): any {
         let messageToSend = '{"type": "isSpeaking", "event": "' + onIsSpeakingEvent + '"}';
         this.emitter.emit(messageToSend);
         this.emitter.waitFor(onIsSpeakingEvent, this.sendResponse.bind(this, res));
         return;
     }
 
-    sendResponse(res: any, response: string){
+    sendResponse(res: any, response: string) {
         console.log(response);
         res.send('' + response + '');
         this.emitter.removeEvent(onIsSpeakingEvent);
         return;
-        
+
     }
 
 }

@@ -1,9 +1,9 @@
 import { Command } from './command';
-import {App} from '../constants';
+import { App } from '../constants';
 import { ServiceLocator } from './../utils/servicelocator';
 export class IsSpeakingCommand implements Command {
     isSpeaking: any;
-    
+
     parsedMessage: any;
     public constructor(parsedMessage: any) {
         this.parsedMessage = parsedMessage;

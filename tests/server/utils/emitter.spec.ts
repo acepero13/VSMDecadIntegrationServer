@@ -6,13 +6,13 @@ import * as sinonChai from 'sinon-chai';
 
 import { Emitter } from './../../../src/server/utils/emitter';
 import { FakeEmitter } from './../../fakes/fakeEmitter';
-import {App} from '../../../src/constants';
+import { App } from '../../../src/constants';
 
 
 chai.should();
 chai.use(sinonChai);
-let spyClient:any ;
-let fakeClient :any;
+let spyClient: any;
+let fakeClient: any;
 let spyOn: any;
 let fakeIO: any;
 
@@ -22,7 +22,7 @@ describe('Test emitter', () => {
         spyClient = sinon.spy();
         spyOn = sinon.spy();
         fakeClient = {
-            emit:spyClient
+            emit: spyClient
         };
         fakeIO = {
             on: spyOn
@@ -40,7 +40,7 @@ describe('Test emitter', () => {
 
 
     it('should register on connection', () => {
-        
+
         const message: string = 'Hello world';
         let fakeServer = sinon.stub();
         let emitter = new FakeEmitter(fakeServer);
@@ -49,6 +49,6 @@ describe('Test emitter', () => {
         emitter.registerConnectionEvent();
         emitter.emit(message);
         spyOn.should.have.been.calledWith(App.IO_CONNECTED_NOTIFICATION);
-                
+
     });
 });

@@ -5,8 +5,8 @@ import 'sinon';
 import * as sinonChai from 'sinon-chai';
 import { ExpressServer } from './../../src/server/expressserver';
 import * as sinon from 'sinon';
-import {FakeEmitter} from '../fakes/fakeEmitter';
-import {App} from '../../src/constants';
+import { FakeEmitter } from '../fakes/fakeEmitter';
+import { App } from '../../src/constants';
 
 const fakeHttpServer = {};
 let server: any;
@@ -45,7 +45,7 @@ describe('Mocked server', () => {
     });
 
     it('should listen on specified port 5000', () => {
-        port = 5000; 
+        port = 5000;
         startServer(port);
         stubExpressListen.should.have.been.calledWithExactly(port);
     });

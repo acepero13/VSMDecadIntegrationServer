@@ -1,18 +1,18 @@
-import {Middleware} from '../middleware/middleware';
-import {Home} from '../middleware/home';
-import {Assets} from '../middleware/assets';
-import {Speak} from '../middleware/speak';
+import { Middleware } from '../middleware/middleware';
+import { Home } from '../middleware/home';
+import { Assets } from '../middleware/assets';
+import { Speak } from '../middleware/speak';
 import { Emitter } from './../../../src/server/utils/emitter';
-import {Animation} from '../middleware/animation';
+import { Animation } from '../middleware/animation';
 export class MiddlewareInitializator {
     emitter: Emitter;
     app: any;
     middlewares: Array<Middleware>;
-    constructor(app: any, emitter: Emitter){
+    constructor(app: any, emitter: Emitter) {
         this.app = app;
         this.middlewares = new Array();
         this.emitter = emitter;
-        
+
     }
 
     private addMiddlewares() {
@@ -22,7 +22,7 @@ export class MiddlewareInitializator {
         this.middlewares.push(new Animation());
     }
 
-    public initialize(){
+    public initialize() {
         this.addMiddlewares();
         this.registerMiddlewares();
     }
