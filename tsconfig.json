@@ -12,6 +12,8 @@
       "target": "es2017",
       "lib": ["es2015", "dom"],
       "noImplicitAny": true,
+      "noUnusedParameters": true,
+      "noUnusedLocals": true,
       "typeRoots": [
         "node_modules/@types"
       ],
